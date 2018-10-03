@@ -16,7 +16,6 @@ serve as a way of having a centralized clinical history for them.
 
 JDK is built using Java 8, Gradle, Spring-Boot, Lombok, JWT and Zuul (Netflix) among other technologies.
 
-
 ## HOW TO RUN IT
 
 JDK uses Spring-Boot so, once the project is cloned and built (using Gradle), all you have to do is run the 
