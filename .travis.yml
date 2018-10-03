@@ -1,0 +1,29 @@
+language: java
+
+before_cache:
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+  - $HOME/google-cloud-sdk
+  - $HOME/.m2
+  - $HOME/.gradle/daemon      #Cache daemon logs
+  - $HOME/.gradle/native      #Cache library downloaded from the gradle dependency
+  - $HOME/.gradle/wrapper     #Cache the gradle
+  - $HOME/.gradle/caches/
+
+
+env:
+  global:
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
+before_install:
+- sudo apt-get install jq
+
+before_script:
+- wget -O ~/codacy-coverage-reporter-assembly-latest.jar https://github.com/codacy/codacy-coverage-reporter/releases/download/4.0.3/codacy-coverage-reporter-4.0.3-assembly.jar
+
+after_success:
+- gradle jacocoTestReport
+- java -jar ~/codacy-coverage-reporter-assembly-latest.jar report -l Java -r build/testCoverageReport/test/jacocoTestReport.xml
