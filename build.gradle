@@ -9,7 +9,7 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
 
-    }
+	}
 }
 
 apply plugin: 'java'
@@ -40,6 +40,7 @@ dependencies {
 	compile('org.springframework.cloud:spring-cloud-starter-eureka-server:1.1.5.RELEASE')
     compile('org.springframework.cloud:spring-cloud-starter')
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-zuul', version: '2.0.1.RELEASE'
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.7.0'
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 
